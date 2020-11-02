@@ -135,6 +135,22 @@ class UserTransactions {
             });
         });
     }
+
+    insertAsync(values) {
+        return new Promise((resolve, reject) => {
+            this._datacontext.query(`INSERT INTO tblUser SET ?`, values, (error, result) => {
+                if (!error) {
+                    if (result.affectedRows)
+                        resolve('User registration has taken place.');
+                    else
+                        reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: 'Error while registering user !' });
+                }
+                else {
+                    reject(error.errno == 1062 ? { status: HttpStatusCode.CONFLICT, message: 'There is such user !' } : { status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
+                }
+            });
+        });
+    }
 }
 
 module.exports = UserTransactions;

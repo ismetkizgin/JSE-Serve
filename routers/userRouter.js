@@ -52,4 +52,14 @@ router.put('/user', tokenControl, authControl, userValidator.update, userInsertA
     }
 });
 
+router.post('/user', tokenControl, authControl, userValidator.insert, userInsertAuthControl, async (req, res) => {
+    try {
+        const result = await userTransactions.insertAsync(req.body);
+        res.json(result);
+    } catch (error) {
+        console.log(error);
+        res.status(error.status || HttpStatusCode.INTERNAL_SERVER_ERROR).send(error.message);
+    }
+});
+
 module.exports = router;
