@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.4.0](https://github.com/ismetkizgin/cl-serve/compare/v1.3.0...v1.4.0) (2020-11-02)
+
+
+### Features
+
+* added user delete router ([9ba8dc6](https://github.com/ismetkizgin/cl-serve/commit/9ba8dc609e9e187ab85b789f343bf6dfe7cbfc91))
+* added user find router ([dd3858f](https://github.com/ismetkizgin/cl-serve/commit/dd3858f2e42d7d7620a25fd6e7067f560688cdde))
+* added user insertion router ([a41709e](https://github.com/ismetkizgin/cl-serve/commit/a41709e9ad170f4bb6db80f719c2f543022d94d1))
+* added user list router ([624d82c](https://github.com/ismetkizgin/cl-serve/commit/624d82c95a2d7469c852d4337e129111521b7abc))
+* added user update router ([c90c21c](https://github.com/ismetkizgin/cl-serve/commit/c90c21cf4d0d712be52976c6b3b01126536b43a6))
+
 ## [1.3.0](https://github.com/ismetkizgin/cl-serve/compare/v1.2.0...v1.3.0) (2020-11-02)
 
 
