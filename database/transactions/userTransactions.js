@@ -44,7 +44,7 @@ class UserTransactions {
             this._datacontext.query(`SELECT * FROM tblUser WHERE UserPassword=? AND UserID=? `, [values.UserPassword, values.UserID], (error, result) => {
                 if (!error) {
                     if (result.length > 0)
-                        resolve(result[0]);
+                        resolve('The password is correct.');
                     else
                         reject({ status: HttpStatusCode.BAD_REQUEST, message: 'User password does not match !' });
                 }

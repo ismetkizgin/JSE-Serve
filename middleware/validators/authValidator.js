@@ -43,7 +43,7 @@ class AuthValidator {
         }
     }
 
-    static async delete(req, res, next) {
+    static async passwordControl(req, res, next) {
         try {
             await joi.object({
                 UserPassword: joi.string().max(99).required(),
