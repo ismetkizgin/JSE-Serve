@@ -3,8 +3,10 @@ const app = express();
 const routers = require('./routers');
 
 app.get('/', function (req, res) {
-    res.json('CL Serve Project');
+    res.json('JSE Serve Project');
 });
+
+app.use(routers.authRouter);
 
 app.use((req, res, next) => {
     res.send("404 NOT FOUND");
