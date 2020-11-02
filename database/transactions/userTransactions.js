@@ -1,5 +1,6 @@
 const { mysqlDataContext } = require('../dataContexts');
 const HttpStatusCode = require('http-status-codes');
+const { sqlHelper } = require('../../utils');
 
 class UserTransactions {
     constructor() {
@@ -79,6 +80,22 @@ class UserTransactions {
                         resolve('Deletion succeeded.');
                     else
                         reject({ status: HttpStatusCode.GONE, message: 'There is no such user.' });
+                }
+                else {
+                    reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
+                }
+            });
+        });
+    }
+
+    listAsync(values) {
+        return new Promise((resolve, reject) => {
+            this._datacontext.query(`SELECT * FROM vwUserList ORDER BY UserFirstName, UserLastName ASC ${sqlHelper.getLimitOffset(values)}`, (error, result) => {
+                if (!error) {
+                    if (result.length > 0)
+                        resolve(result);
+                    else
+                        reject({ status: HttpStatusCode.NOT_FOUND, message: 'No user registered to the system was found !' });
                 }
                 else {
                     reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
