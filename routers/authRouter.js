@@ -18,6 +18,15 @@ router.post('/login', authValidator.login, async (req, res) => {
     }
 });
 
+router.put('/change-password', tokenControl, authValidator.changePassword, async (req, res) => {
+    try {
+        const result = await userTransactions.changePasswordAsync(Object.assign(req.body, { UserID: req.decode.UserID }));
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || HttpStatusCode.INTERNAL_SERVER_ERROR).send(error.message);
+    }
+});
+
 router.get('/token-decode', tokenControl, async (req, res) => {
     res.json(req.decode);
 });
