@@ -26,4 +26,17 @@ router.get('/user/:UserID', tokenControl, authControl, userValidator.find, async
     }
 });
 
+router.delete('/user', tokenControl, authControl, userValidator.delete, async (req, res) => {
+    try {
+        await userTransactions.statusFindAsync({ UserID: req.body.UserID, UserTypeName: req.decode.UserTypeName });
+        const result = await userTransactions.deleteAsync(req.body.UserID);
+        res.json(result);
+    } catch (error) {
+        if (error.status == 404)
+            res.status(HttpStatusCode.UNAUTHORIZED).send('User is not registered in the system or unauthorized operation.');
+        else
+            res.status(error.status || HttpStatusCode.INTERNAL_SERVER_ERROR).send(error.message);
+    }
+});
+
 module.exports = router;
