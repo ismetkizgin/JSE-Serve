@@ -50,5 +50,5 @@ As a developer, to start the project and do the test operations, first go to the
 ```
 
 ## Useful resources
-* [API Documentation](#)
+* [API Documentation](https://doc-jse-serve.herokuapp.com/)
 * [Changelog](CHANGELOG.md)
