@@ -1,0 +1,1 @@
+INSERT INTO `tblUser` (`UserID`, `UserFirstName`, `UserLastName`, `UserEmail`, `UserPassword`, `UserTypeName`) VALUES (NULL, 'İsmet', 'Kizgin', 'jse@project.com', 'password', 'Root');
