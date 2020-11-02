@@ -37,6 +37,21 @@ class UserValidator {
             res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
         }
     }
+
+    static async update(req, res, next) {
+        try {
+            await joi.object({
+                UserID: joi.number().required(),
+                UserFirstName: joi.string().min(3).pattern(new RegExp('^[A-Za-zÇçÖöŞşÜüĞğİı ]+$')).required(),
+                UserLastName: joi.string().min(3).pattern(new RegExp('^[A-Za-zÇçÖöŞşÜüĞğİı ]+$')).required(),
+                UserEmail: joi.string().email().required(),
+                UserTypeName: joi.string().required(),
+            }).validateAsync(req.body);
+            next();
+        } catch (error) {
+            res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
+        }
+    }
 }
 
 module.exports = UserValidator;
