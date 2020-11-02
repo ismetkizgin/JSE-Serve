@@ -18,4 +18,8 @@ router.post('/login', authValidator.login, async (req, res) => {
     }
 });
 
+router.get('/token-decode', tokenControl, async (req, res) => {
+    res.json(req.decode);
+});
+
 module.exports = router;
