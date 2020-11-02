@@ -15,6 +15,17 @@ class UserValidator {
             res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
         }
     }
+
+    static async find(req, res, next) {
+        try {
+            await joi.object({
+                UserID: joi.number().min(1).required(),
+            }).validateAsync({ UserID: parseInt(req.params.UserID) });
+            next();
+        } catch (error) {
+            res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
+        }
+    }
 }
 
 module.exports = UserValidator;

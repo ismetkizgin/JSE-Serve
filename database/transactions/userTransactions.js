@@ -103,6 +103,22 @@ class UserTransactions {
             });
         });
     }
+
+    findAsync(UserID) {
+        return new Promise((resolve, reject) => {
+            this._datacontext.query(`SELECT * FROM vwUserList WHERE UserID=?`, [UserID], (error, result) => {
+                if (!error) {
+                    if (result.length > 0)
+                        resolve(result[0]);
+                    else
+                        reject({ status: HttpStatusCode.NOT_FOUND, message: 'No user registered to the system was found !' });
+                }
+                else {
+                    reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
+                }
+            });
+        });
+    }
 }
 
 module.exports = UserTransactions;

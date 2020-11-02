@@ -17,4 +17,13 @@ router.get('/user', tokenControl, authControl, userValidator.list, async (req, r
     }
 });
 
+router.get('/user/:UserID', tokenControl, authControl, userValidator.find, async (req, res) => {
+    try {
+        const result = await userTransactions.findAsync(req.params.UserID);
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || HttpStatusCode.INTERNAL_SERVER_ERROR).send(error.message);
+    }
+});
+
 module.exports = router;
