@@ -27,6 +27,16 @@ router.put('/change-password', tokenControl, authValidator.changePassword, async
     }
 });
 
+router.put('/my-account', tokenControl, authValidator.update, async (req, res) => {
+    try {
+        await userTransactions.passwordControlAsync({ UserID: req.decode.UserID, UserPassword: req.body.UserPassword });
+        const result = await userTransactions.updateAsync(Object.assign(req.body, { UserID: req.decode.UserID }));
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || HttpStatusCode.INTERNAL_SERVER_ERROR).send(error.message);
+    }
+});
+
 router.get('/token-decode', tokenControl, async (req, res) => {
     res.json(req.decode);
 });
