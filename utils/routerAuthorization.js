@@ -24,6 +24,9 @@ module.exports = {
         },
         DELETE: {
             Authorize: [Roles.Root, Roles.Administrator]
-        }
+        },
+        GET: {
+            Authorize: [Roles.Root, Roles.Administrator]
+        },
     }
 }

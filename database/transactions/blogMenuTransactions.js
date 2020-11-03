@@ -1,5 +1,6 @@
 const { mysqlDataContext } = require('../dataContexts');
 const HttpStatusCode = require('http-status-codes');
+const { sqlHelper } = require('../../utils');
 
 class BlogMenuTransactions {
     constructor() {
@@ -49,6 +50,22 @@ class BlogMenuTransactions {
                 }
                 else {
                     reject(error.errno == 1451 ? { status: HttpStatusCode.BAD_REQUEST, message: "There are blog posts on the blog menu so they cannot be deleted !" } : { status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
+                }
+            });
+        });
+    }
+
+    listAsync(values) {
+        return new Promise((resolve, reject) => {
+            this._datacontext.query(`SELECT * FROM tblBlogMenu ORDER BY BlogMenuName ASC ${sqlHelper.getLimitOffset(values)}`, (error, result) => {
+                if (!error) {
+                    if (result.length > 0)
+                        resolve(result);
+                    else
+                        reject({ status: HttpStatusCode.NOT_FOUND, message: 'No blog menu registered to the system was found.' });
+                }
+                else {
+                    reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
                 }
             });
         });
