@@ -18,6 +18,9 @@ module.exports = {
     blog_menu: {
         POST: {
             Authorize: [Roles.Root, Roles.Administrator]
-        }
+        },
+        PUT: {
+            Authorize: [Roles.Root, Roles.Administrator]
+        },
     }
 }

@@ -16,4 +16,13 @@ router.post('/blog-menu', tokenControl, authControl, blogMenuValidator.insert, a
     }
 });
 
+router.put('/blog-menu', tokenControl, authControl, blogMenuValidator.update, async (req, res) => {
+    try {
+        const result = await blogMenuTransactions.updateAsync(req.body);
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || HttpStatusCode.INTERNAL_SERVER_ERROR).send(error.message);
+    }
+});
+
 module.exports = router;

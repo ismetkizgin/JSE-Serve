@@ -15,6 +15,19 @@ class BlogMenuValidator {
             res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
         }
     }
+
+    static async update(req, res, next) {
+        try {
+            await joi.object({
+                BlogMenuID: joi.number().min(1).required(),
+                BlogMenuName: joi.string().required(),
+                BlogMenuDescription: joi.string().required()
+            }).validateAsync(req.body);
+            next();
+        } catch (error) {
+            res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
+        }
+    }
 }
 
 module.exports = BlogMenuValidator;
