@@ -43,4 +43,13 @@ router.get('/blog-menu/', blogMenuValidator.list, async (req, res) => {
     }
 });
 
+router.get('/blog-menu/:BlogMenuID', tokenControl, authControl, blogMenuValidator.find, async (req, res) => {
+    try {
+        const result = await blogMenuTransactions.findAsync(req.params.BlogMenuID);
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || HttpStatusCode.INTERNAL_SERVER_ERROR).send(error.message);
+    }
+});
+
 module.exports = router;
