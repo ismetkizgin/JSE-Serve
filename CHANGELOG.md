@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.5.0](https://github.com/ismetkizgin/cl-serve/compare/v1.4.0...v1.5.0) (2020-11-03)
+
+
+### Features
+
+* added blog menu delete router ([57c62a1](https://github.com/ismetkizgin/cl-serve/commit/57c62a1748ee951b480440a72324a1ce8c7825b1))
+* added blog menu find router ([df6fd4a](https://github.com/ismetkizgin/cl-serve/commit/df6fd4a7766cdb8e93f494e7e3442e4f6f0378e4))
+* added blog menu insertion router ([f9516fd](https://github.com/ismetkizgin/cl-serve/commit/f9516fdecbc2698c3d28f7219d7fb1025352162f))
+* added blog menu list router ([9ee97af](https://github.com/ismetkizgin/cl-serve/commit/9ee97af5b8aa439e9b4aa9340f2751a9cbc98346))
+* added blog menu update router ([ac97b63](https://github.com/ismetkizgin/cl-serve/commit/ac97b631f864cdc65686ba564cb89ff700b17389))
+
 ## [1.4.0](https://github.com/ismetkizgin/cl-serve/compare/v1.3.0...v1.4.0) (2020-11-02)
 
 
