@@ -37,6 +37,22 @@ class BlogMenuTransactions {
             });
         });
     }
+
+    deleteAsync(BlogMenuID) {
+        return new Promise((resolve, reject) => {
+            this._datacontext.query(`DELETE FROM tblBlogMenu WHERE BlogMenuID=?`, [BlogMenuID], (error, result) => {
+                if (!error) {
+                    if (result.affectedRows)
+                        resolve('Deletion succeeded.');
+                    else
+                        reject({ status: HttpStatusCode.GONE, message: 'There is no such blog menu !' });
+                }
+                else {
+                    reject(error.errno == 1451 ? { status: HttpStatusCode.BAD_REQUEST, message: "There are blog posts on the blog menu so they cannot be deleted !" } : { status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
+                }
+            });
+        });
+    }
 }
 
 module.exports = BlogMenuTransactions;

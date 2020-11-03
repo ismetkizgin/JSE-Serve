@@ -25,4 +25,13 @@ router.put('/blog-menu', tokenControl, authControl, blogMenuValidator.update, as
     }
 });
 
+router.delete('/blog-menu', tokenControl, authControl, blogMenuValidator.delete, async (req, res) => {
+    try {
+        const result = await blogMenuTransactions.deleteAsync(req.body.BlogMenuID);
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || HttpStatusCode.INTERNAL_SERVER_ERROR).send(error.message);
+    }
+});
+
 module.exports = router;
