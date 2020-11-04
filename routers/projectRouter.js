@@ -25,4 +25,13 @@ router.put('/project', tokenControl, authControl, projectValidator.update, async
     }
 });
 
+router.delete('/project', tokenControl, authControl, projectValidator.delete, async (req, res) => {
+    try {
+        const result = await projectTransactions.deleteAsync(req.body.ProjectID);
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || HttpStatusCode.INTERNAL_SERVER_ERROR).send(error.message);
+    }
+});
+
 module.exports = router;
