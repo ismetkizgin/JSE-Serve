@@ -28,5 +28,10 @@ module.exports = {
         GET: {
             Authorize: [Roles.Root, Roles.Administrator]
         },
+    },
+    project: {
+        POST: {
+            Authorize: [Roles.Root, Roles.Administrator]
+        },
     }
 }
