@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.6.0](https://github.com/ismetkizgin/cl-serve/compare/v1.5.0...v1.6.0) (2020-11-04)
+
+
+### Features
+
+* added slide delete router ([f7dc512](https://github.com/ismetkizgin/cl-serve/commit/f7dc512958c8cb3cb53eb565e057ce04787e1ac0))
+* added slide find router ([adb9324](https://github.com/ismetkizgin/cl-serve/commit/adb932413a4aa62bbf39d6bc5777170e193a89f3))
+* added slide insertion router ([45f4715](https://github.com/ismetkizgin/cl-serve/commit/45f47150d7129d9f5e5f0edc45a58d8f2a447c99))
+* added slide list router ([699afaa](https://github.com/ismetkizgin/cl-serve/commit/699afaa653f292f8139ed10ea89f04a03525d750))
+* added slide update router ([ccaf76f](https://github.com/ismetkizgin/cl-serve/commit/ccaf76f14d1e7f43975ba812cbb3aefbec2fae07))
+
 ## [1.5.0](https://github.com/ismetkizgin/cl-serve/compare/v1.4.0...v1.5.0) (2020-11-03)
 
 
