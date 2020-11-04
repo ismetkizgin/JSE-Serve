@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.7.0](https://github.com/ismetkizgin/cl-serve/compare/v1.6.0...v1.7.0) (2020-11-04)
+
+
+### Features
+
+* added project delete router ([14a7c5b](https://github.com/ismetkizgin/cl-serve/commit/14a7c5b10a6fe04c65a47fba7d2bfedab64a4ee0))
+* added project find router ([0b000b0](https://github.com/ismetkizgin/cl-serve/commit/0b000b090caf124f133325064b59ba576a913ef4))
+* added project insertion router ([cc35373](https://github.com/ismetkizgin/cl-serve/commit/cc353734e4894c846d15e492c0f900db83687677))
+* added project list router ([64ab813](https://github.com/ismetkizgin/cl-serve/commit/64ab81310589ca13b778a0e196ac538ca30a356d))
+* added project update router ([4fb6ac7](https://github.com/ismetkizgin/cl-serve/commit/4fb6ac7c1dd58622e4a7e19f5b50fc0af406bd21))
+
 ## [1.6.0](https://github.com/ismetkizgin/cl-serve/compare/v1.5.0...v1.6.0) (2020-11-04)
 
 
