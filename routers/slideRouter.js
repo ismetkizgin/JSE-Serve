@@ -53,4 +53,14 @@ router.get('/slide', slideValidator.list, async (req, res) => {
     }
 });
 
+router.get('/slide/:SlideID', slideValidator.find, async (req, res) => {
+    try {
+        const result = await slideTransactions.findAsync(req.params.SlideID);
+        result.SlideImagePath = req.app.get('assets_url') + result.SlideImagePath;
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || 500).send(error.message);
+    }
+});
+
 module.exports = router;
