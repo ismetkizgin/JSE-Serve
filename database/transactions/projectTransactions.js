@@ -70,6 +70,22 @@ class ProjectTransactions {
             });
         });
     }
+
+    findAsync(ProjectID) {
+        return new Promise((resolve, reject) => {
+            this._datacontext.query(`SELECT * FROM tblProject WHERE ProjectID=?`, [ProjectID], (error, result) => {
+                if (!error) {
+                    if (result.length > 0)
+                        resolve(result[0]);
+                    else
+                        reject({ status: HttpStatusCode.NOT_FOUND, message: 'No project registered to the system was found.' });
+                }
+                else {
+                    reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
+                }
+            });
+        });
+    }
 }
 
 module.exports = ProjectTransactions;

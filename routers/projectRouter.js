@@ -43,4 +43,13 @@ router.get('/project', projectValidator.list, async (req, res) => {
     }
 });
 
+router.get('/project/:ProjectID', projectValidator.find, async (req, res) => {
+    try {
+        const result = await projectTransactions.findAsync(req.params.ProjectID);
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || HttpStatusCode.INTERNAL_SERVER_ERROR).send(error.message);
+    }
+});
+
 module.exports = router;

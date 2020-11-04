@@ -51,6 +51,17 @@ class ProjectValidator {
             res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
         }
     }
+
+    static async find(req, res, next) {
+        try {
+            await joi.object({
+                ProjectID: joi.number().min(1).required(),
+            }).validateAsync({ ProjectID: parseInt(req.params.ProjectID) });
+            next();
+        } catch (error) {
+            res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
+        }
+    }
 }
 
 module.exports = ProjectValidator;
