@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.set('api_key', process.env.API_KEY || 'secret');
+app.set('assets_url', process.env.API_URL || 'http://localhost:5000');
 
 app.use(serve);
 

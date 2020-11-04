@@ -40,4 +40,17 @@ router.delete('/slide', tokenControl, slideValidator.delete, async (req, res) =>
     }
 });
 
+router.get('/slide', slideValidator.list, async (req, res) => {
+    try {
+        let result = await slideTransactions.listAsync(req.body);
+        result = result.map(slide => {
+            slide.SlideImagePath = req.app.get('assets_url') + slide.SlideImagePath;
+            return slide;
+        });
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || 500).send(error.message);
+    }
+});
+
 module.exports = router;
