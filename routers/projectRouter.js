@@ -34,4 +34,13 @@ router.delete('/project', tokenControl, authControl, projectValidator.delete, as
     }
 });
 
+router.get('/project', projectValidator.list, async (req, res) => {
+    try {
+        const result = await projectTransactions.listAsync(req.body);
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || HttpStatusCode.INTERNAL_SERVER_ERROR).send(error.message);
+    }
+});
+
 module.exports = router;
