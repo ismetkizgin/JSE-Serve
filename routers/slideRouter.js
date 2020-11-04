@@ -15,7 +15,7 @@ router.post('/slide', tokenControl, multerImageUpload.upload, slideValidator.ins
         res.json(result);
     } catch (error) {
         await multerImageUpload.remove('public' + req.file.path);
-        res.status(error.status || 500).json({ message: error.message });
+        res.status(error.status || 500).send(error.message);
     }
 });
 
@@ -25,7 +25,7 @@ router.put('/slide', tokenControl, multerImageUpload.upload, slideValidator.upda
         res.json(result);
     } catch (error) {
         await multerImageUpload.remove('public' + req.file.path);
-        res.status(error.status || 500).json({ message: error.message });
+        res.status(error.status || 500).send(error.message);
     }
 });
 
@@ -36,7 +36,7 @@ router.delete('/slide', tokenControl, slideValidator.delete, async (req, res) =>
         await multerImageUpload.remove('public' + slideFind.SlideImagePath);
         res.json(result);
     } catch (error) {
-        res.status(error.status || 500).json({ message: error.message });
+        res.status(error.status || 500).send(error.message);
     }
 });
 
