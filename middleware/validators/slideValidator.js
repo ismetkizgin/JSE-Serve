@@ -30,6 +30,18 @@ class SlideValidator {
             res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
         }
     }
+
+    static async delete(req, res, next) {
+        try {
+            await joi.object({
+                SlideID: joi.number().required(),
+            }).validateAsync(req.body);
+            next();
+        } catch (error) {
+            console.log(error)
+            res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
+        }
+    }
 }
 
 module.exports = SlideValidator;

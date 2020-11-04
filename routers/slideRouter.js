@@ -29,4 +29,15 @@ router.put('/slide', tokenControl, multerImageUpload.upload, slideValidator.upda
     }
 });
 
+router.delete('/slide', tokenControl, slideValidator.delete, async (req, res) => {
+    try {
+        const slideFind = await slideTransactions.findAsync(req.body.SlideID);
+        const result = await slideTransactions.deleteAsync(req.body.SlideID);
+        await multerImageUpload.remove('public' + slideFind.SlideImagePath);
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || 500).json({ message: error.message });
+    }
+});
+
 module.exports = router;

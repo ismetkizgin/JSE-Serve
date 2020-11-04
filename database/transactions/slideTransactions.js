@@ -38,6 +38,38 @@ class SlideTransactions {
             });
         });
     }
+
+    deleteAsync(SlideID) {
+        return new Promise((resolve, reject) => {
+            this._datacontext.query(`DELETE FROM tblSlide WHERE SlideID=?`, [SlideID], (error, result) => {
+                if (!error) {
+                    if (result.affectedRows)
+                        resolve('Deletion succeeded.');
+                    else
+                        reject({ status: HttpStatusCode.GONE, message: 'There is no such slide !' });
+                }
+                else {
+                    reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
+                }
+            });
+        });
+    }
+
+    findAsync(SlideID) {
+        return new Promise((resolve, reject) => {
+            this._datacontext.query(`SELECT * FROM tblSlide WHERE SlideID=?`, [SlideID], (error, result) => {
+                if (!error) {
+                    if (result.length > 0)
+                        resolve(result[0]);
+                    else
+                        reject({ status: HttpStatusCode.NOT_FOUND, message: 'No slide registered to the system was found.' });
+                }
+                else {
+                    reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
+                }
+            });
+        });
+    }
 }
 
 module.exports = SlideTransactions;
