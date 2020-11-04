@@ -22,6 +22,22 @@ class SlideTransactions {
             });
         });
     }
+
+    updateAsync(values) {
+        return new Promise((resolve, reject) => {
+            this._datacontext.query(`UPDATE tblSlide SET ? WHERE SlideID=?`, [values, values.SlideID], (error, result) => {
+                if (!error) {
+                    if (result.affectedRows)
+                        resolve('Slide information has been updated.');
+                    else
+                        reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: 'An error occurred while updating slide information !' });
+                }
+                else {
+                    reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
+                }
+            });
+        });
+    }
 }
 
 module.exports = SlideTransactions;
