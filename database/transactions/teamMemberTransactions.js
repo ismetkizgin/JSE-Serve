@@ -22,6 +22,22 @@ class TeamMemberTransactions {
             });
         });
     }
+
+    updateAsync(values) {
+        return new Promise((resolve, reject) => {
+            this._datacontext.query(`UPDATE tblTeamMember SET ? WHERE TeamMemberID=?`, [values, values.TeamMemberID], (error, result) => {
+                if (!error) {
+                    if (result.affectedRows)
+                        resolve('Team member information has been updated.');
+                    else
+                        reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: 'An error occurred while updating team member information !' });
+                }
+                else {
+                    reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
+                }
+            });
+        });
+    }
 }
 
 module.exports = TeamMemberTransactions;
