@@ -52,7 +52,9 @@ class BlogMenuValidator {
         try {
             await joi.object({
                 limit: joi.number(),
-                offset: joi.number()
+                offset: joi.number(),
+                BlogState: joi.boolean(),
+                UserID: joi.number()
             }).with('offset', 'limit').validateAsync(req.query);
             next();
         } catch (error) {

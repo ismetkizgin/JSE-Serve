@@ -73,7 +73,7 @@ class BlogTransactions {
 
     listAsync(values) {
         return new Promise((resolve, reject) => {
-            this._datacontext.query(`SELECT * FROM vwBlogList ${sqlHelper.getLimitOffset(values)}`, (error, result) => {
+            this._datacontext.query(`SELECT * FROM vwBlogList ${sqlHelper.getWhere(values)} ORDER BY BlogID DESC ${sqlHelper.getLimitOffset(values)}`, (error, result) => {
                 if (!error) {
                     if (result.length > 0)
                         resolve(result);
