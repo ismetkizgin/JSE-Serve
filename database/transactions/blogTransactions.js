@@ -54,6 +54,22 @@ class BlogTransactions {
             });
         });
     }
+
+    deleteAsync(BlogID) {
+        return new Promise((resolve, reject) => {
+            this._datacontext.query(`DELETE FROM tblBlog WHERE BlogID=?`, [BlogID], (error, result) => {
+                if (!error) {
+                    if (result.affectedRows)
+                        resolve('Deletion succeeded.');
+                    else
+                        reject({ status: HttpStatusCode.GONE, message: 'There is no such blog !' });
+                }
+                else {
+                    reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
+                }
+            });
+        });
+    }
 }
 
 module.exports = BlogTransactions;
