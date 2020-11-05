@@ -54,4 +54,15 @@ router.get('/team-member', teamMemberValidator.list, async (req, res) => {
     }
 });
 
+router.get('/team-member/:TeamMemberID', teamMemberValidator.find, async (req, res) => {
+    try {
+        const result = await teamMemberTransactions.findAsync(req.params.TeamMemberID);
+        result.TeamMemberImagePath = req.app.get('assets_url') + result.TeamMemberImagePath;
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || 500).send(error.message);
+    }
+});
+
+
 module.exports = router;

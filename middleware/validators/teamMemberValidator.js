@@ -61,6 +61,17 @@ class TeamMemberValidator {
             res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
         }
     }
+
+    static async find(req, res, next) {
+        try {
+            await joi.object({
+                TeamMemberID: joi.number().min(1).required(),
+            }).validateAsync({ TeamMemberID: parseInt(req.params.TeamMemberID) });
+            next();
+        } catch (error) {
+            res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
+        }
+    }
 }
 
 module.exports = TeamMemberValidator;
