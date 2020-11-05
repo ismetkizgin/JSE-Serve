@@ -38,6 +38,38 @@ class TeamMemberTransactions {
             });
         });
     }
+
+    deleteAsync(TeamMemberID) {
+        return new Promise((resolve, reject) => {
+            this._datacontext.query(`DELETE FROM tblTeamMember WHERE TeamMemberID=?`, [TeamMemberID], (error, result) => {
+                if (!error) {
+                    if (result.affectedRows)
+                        resolve('Deletion succeeded.');
+                    else
+                        reject({ status: HttpStatusCode.GONE, message: 'There is no such team member !' });
+                }
+                else {
+                    reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
+                }
+            });
+        });
+    }
+
+    findAsync(TeamMemberID) {
+        return new Promise((resolve, reject) => {
+            this._datacontext.query(`SELECT * FROM tblTeamMember WHERE TeamMemberID=?`, [TeamMemberID], (error, result) => {
+                if (!error) {
+                    if (result.length > 0)
+                        resolve(result[0]);
+                    else
+                        reject({ status: HttpStatusCode.NOT_FOUND, message: 'No team member registered to the system was found.' });
+                }
+                else {
+                    reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
+                }
+            });
+        });
+    }
 }
 
 module.exports = TeamMemberTransactions;

@@ -29,4 +29,16 @@ router.put('/team-member', tokenControl, multerImageUpload.upload, teamMemberVal
     }
 });
 
+router.delete('/team-member', tokenControl, teamMemberValidator.delete, async (req, res) => {
+    try {
+        const teamMemberFind = await teamMemberTransactions.findAsync(req.body.TeamMemberID);
+        const result = await teamMemberTransactions.deleteAsync(req.body.TeamMemberID);
+        await multerImageUpload.remove('public' + teamMemberFind.TeamMemberImagePath);
+        res.json(result);
+    } catch (error) {
+        if (req.file) await multerImageUpload.remove(req.file.path);
+        res.status(error.status || HttpStatusCode.INTERNAL_SERVER_ERROR).send(error.message);
+    }
+});
+
 module.exports = router;
