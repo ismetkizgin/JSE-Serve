@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.8.0](https://github.com/ismetkizgin/cl-serve/compare/v1.7.0...v1.8.0) (2020-11-05)
+
+
+### Features
+
+* added blog delete router ([2a7a651](https://github.com/ismetkizgin/cl-serve/commit/2a7a651af261c770595cdca214845dff1b0194c6))
+* added blog find router ([14fb246](https://github.com/ismetkizgin/cl-serve/commit/14fb24668816bb7a3fd24a57a9cc4fc909d25b10))
+* added blog insertion router ([f582cd3](https://github.com/ismetkizgin/cl-serve/commit/f582cd3cd7cf2148e10b6ba8a81d960be947f240))
+* added blog list router ([941915e](https://github.com/ismetkizgin/cl-serve/commit/941915e358c474962caac42244292bc6fc19e60e))
+* added blog update router ([c1b2034](https://github.com/ismetkizgin/cl-serve/commit/c1b20341a593454a945ea2ec211da839373b5ec9))
+* blog list view added to database ([2130264](https://github.com/ismetkizgin/cl-serve/commit/2130264553be1f616466792f8c2f2221a62cce68))
+
+
+### Bug Fixes
+
+* fix for slide validator ([cf39dc5](https://github.com/ismetkizgin/cl-serve/commit/cf39dc5e28a6af14e2521f8c516c93a261e38044))
+
 ## [1.7.0](https://github.com/ismetkizgin/cl-serve/compare/v1.6.0...v1.7.0) (2020-11-04)
 
 
