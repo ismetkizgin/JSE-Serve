@@ -47,4 +47,18 @@ router.delete('/blog', tokenControl, blogValidator.delete, async (req, res) => {
     }
 });
 
+router.get('/blog', blogValidator.list, async (req, res) => {
+    try {
+        let result = await blogTransactions.listAsync(req.body);
+        result = result.map(blog => {
+            blog.BlogImagePath = req.app.get('assets_url') + blog.BlogImagePath;
+            return blog;
+        });
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || 500).send(error.message);
+    }
+});
+
+
 module.exports = router;
