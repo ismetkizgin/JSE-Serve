@@ -1,4 +1,4 @@
 node_modules
 .env
-public/images/slide/*
+public/images/*/*
 !.gitkeep
