@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3306
--- Üretim Zamanı: 02 Kas 2020, 15:15:06
+-- Üretim Zamanı: 05 Kas 2020, 21:44:59
 -- Sunucu sürümü: 8.0.22-0ubuntu0.20.04.2
 -- PHP Sürümü: 7.4.11
 
@@ -36,7 +36,8 @@ CREATE TABLE `tblBlog` (
   `BlogContent` text NOT NULL,
   `BlogState` tinyint(1) NOT NULL DEFAULT '0',
   `BlogCreatedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `BlogMenuID` int NOT NULL
+  `BlogMenuID` int NOT NULL,
+  `BlogImagePath` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -48,7 +49,7 @@ CREATE TABLE `tblBlog` (
 CREATE TABLE `tblBlogMenu` (
   `BlogMenuID` int NOT NULL,
   `BlogMenuName` varchar(50) NOT NULL,
-  `BlogMenuDescrıptıon` varchar(200) NOT NULL
+  `BlogMenuDescription` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -74,7 +75,6 @@ CREATE TABLE `tblMessage` (
 
 CREATE TABLE `tblProject` (
   `ProjectID` int NOT NULL,
-  `TeamMemberIDs` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `ProjectName` varchar(200) NOT NULL,
   `ProjectDescription` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -150,6 +150,57 @@ INSERT INTO `tblUserType` (`UserTypeName`, `UserTypeNumber`) VALUES
 ('Editor', 555),
 ('Root', 777);
 
+-- --------------------------------------------------------
+
+--
+-- Görünüm yapısı durumu `vwBlogList`
+-- (Asıl görünüm için aşağıya bakın)
+--
+CREATE TABLE `vwBlogList` (
+`BlogID` int
+,`UserID` int
+,`BlogTitle` varchar(150)
+,`BlogDescription` varchar(200)
+,`BlogContent` text
+,`BlogState` tinyint(1)
+,`BlogCreatedDate` datetime
+,`BlogMenuID` int
+,`BlogImagePath` text
+,`UserNameSurname` varchar(201)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Görünüm yapısı durumu `vwUserList`
+-- (Asıl görünüm için aşağıya bakın)
+--
+CREATE TABLE `vwUserList` (
+`UserID` int
+,`UserFirstName` varchar(100)
+,`UserLastName` varchar(100)
+,`UserEmail` varchar(100)
+,`UserTypeName` varchar(25)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Görünüm yapısı `vwBlogList`
+--
+DROP TABLE IF EXISTS `vwBlogList`;
+
+CREATE VIEW `vwBlogList`  AS  select `tblBlog`.`BlogID` AS `BlogID`,`tblBlog`.`UserID` AS `UserID`,`tblBlog`.`BlogTitle` AS `BlogTitle`,`tblBlog`.`BlogDescription` AS `BlogDescription`,`tblBlog`.`BlogContent` AS `BlogContent`,`tblBlog`.`BlogState` AS `BlogState`,`tblBlog`.`BlogCreatedDate` AS `BlogCreatedDate`,`tblBlog`.`BlogMenuID` AS `BlogMenuID`,`tblBlog`.`BlogImagePath` AS `BlogImagePath`,concat(`tblUser`.`UserFirstName`,' ',`tblUser`.`UserLastName`) AS `UserNameSurname` from (`tblBlog` join `tblUser` on((`tblBlog`.`UserID` = `tblUser`.`UserID`))) ;
+
+-- --------------------------------------------------------
+
+--
+-- Görünüm yapısı `vwUserList`
+--
+DROP TABLE IF EXISTS `vwUserList`;
+
+CREATE VIEW `vwUserList`  AS  select `tblUser`.`UserID` AS `UserID`,`tblUser`.`UserFirstName` AS `UserFirstName`,`tblUser`.`UserLastName` AS `UserLastName`,`tblUser`.`UserEmail` AS `UserEmail`,`tblUser`.`UserTypeName` AS `UserTypeName` from `tblUser` ;
+
 --
 -- Dökümü yapılmış tablolar için indeksler
 --
@@ -166,7 +217,8 @@ ALTER TABLE `tblBlog`
 -- Tablo için indeksler `tblBlogMenu`
 --
 ALTER TABLE `tblBlogMenu`
-  ADD PRIMARY KEY (`BlogMenuID`);
+  ADD PRIMARY KEY (`BlogMenuID`),
+  ADD UNIQUE KEY `BlogMenuName` (`BlogMenuName`);
 
 --
 -- Tablo için indeksler `tblMessage`
@@ -178,7 +230,8 @@ ALTER TABLE `tblMessage`
 -- Tablo için indeksler `tblProject`
 --
 ALTER TABLE `tblProject`
-  ADD PRIMARY KEY (`ProjectID`);
+  ADD PRIMARY KEY (`ProjectID`),
+  ADD UNIQUE KEY `ProjectName` (`ProjectName`);
 
 --
 -- Tablo için indeksler `tblSlide`
@@ -197,6 +250,7 @@ ALTER TABLE `tblTeamMember`
 --
 ALTER TABLE `tblUser`
   ADD PRIMARY KEY (`UserID`),
+  ADD UNIQUE KEY `UserEmail` (`UserEmail`),
   ADD KEY `UserTypeName` (`UserTypeName`);
 
 --
@@ -213,13 +267,13 @@ ALTER TABLE `tblUserType`
 -- Tablo için AUTO_INCREMENT değeri `tblBlog`
 --
 ALTER TABLE `tblBlog`
-  MODIFY `BlogID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `BlogID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `tblBlogMenu`
 --
 ALTER TABLE `tblBlogMenu`
-  MODIFY `BlogMenuID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `BlogMenuID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `tblMessage`
@@ -231,13 +285,13 @@ ALTER TABLE `tblMessage`
 -- Tablo için AUTO_INCREMENT değeri `tblProject`
 --
 ALTER TABLE `tblProject`
-  MODIFY `ProjectID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ProjectID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `tblSlide`
 --
 ALTER TABLE `tblSlide`
-  MODIFY `SlideID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `SlideID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `tblTeamMember`
@@ -249,7 +303,7 @@ ALTER TABLE `tblTeamMember`
 -- Tablo için AUTO_INCREMENT değeri `tblUser`
 --
 ALTER TABLE `tblUser`
-  MODIFY `UserID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `UserID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Dökümü yapılmış tablolar için kısıtlamalar
@@ -260,7 +314,7 @@ ALTER TABLE `tblUser`
 --
 ALTER TABLE `tblBlog`
   ADD CONSTRAINT `tblBlog_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `tblUser` (`UserID`),
-  ADD CONSTRAINT `tblBlog_ibfk_2` FOREIGN KEY (`BlogID`) REFERENCES `tblBlogMenu` (`BlogMenuID`);
+  ADD CONSTRAINT `tblBlog_ibfk_2` FOREIGN KEY (`BlogMenuID`) REFERENCES `tblBlogMenu` (`BlogMenuID`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Tablo kısıtlamaları `tblUser`
