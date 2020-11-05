@@ -15,6 +15,24 @@ class BlogMenuValidator {
             }).validateAsync(req.body);
             next();
         } catch (error) {
+            await multerImageUpload.remove(req.file.path);
+            res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
+        }
+    }
+
+    static async update(req, res, next) {
+        try {
+            await joi.object({
+                BlogID: joi.number().required(),
+                BlogTitle: joi.string().required(),
+                BlogDescription: joi.string().required(),
+                BlogContent: joi.string().required(),
+                BlogState: joi.boolean(),
+                BlogMenuID: joi.number().required()
+            }).validateAsync(req.body);
+            next();
+        } catch (error) {
+            if(req.file) await multerImageUpload.remove(req.file.path);
             res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
         }
     }

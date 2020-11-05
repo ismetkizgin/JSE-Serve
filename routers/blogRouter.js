@@ -19,4 +19,21 @@ router.post('/blog', tokenControl, multerImageUpload.upload, blogValidator.inser
     }
 });
 
+router.put('/blog', tokenControl, multerImageUpload.upload, blogValidator.update, async (req, res) => {
+    try {
+        if (routerAuthorization[req.method].Individual_Authorize.indexOf(req.decode.UserTypeName) != -1) {
+            const findBlog = await blogTransactions.findAsync(req.body.BlogID);
+            if (findBlog.UserID != req.decode.UserID) {
+                res.status(HttpStatusCode.UNAUTHORIZED).send('Unauthorized transaction !')
+                return;
+            }
+        }
+        const result = await blogTransactions.updateAsync(req.body);
+        res.json(result);
+    } catch (error) {
+        if (req.file) await multerImageUpload.remove(req.file.path);
+        res.status(error.status || HttpStatusCode.INTERNAL_SERVER_ERROR).send(error.message);
+    }
+});
+
 module.exports = router;
