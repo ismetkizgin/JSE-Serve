@@ -41,4 +41,17 @@ router.delete('/team-member', tokenControl, teamMemberValidator.delete, async (r
     }
 });
 
+router.get('/team-member', teamMemberValidator.list, async (req, res) => {
+    try {
+        let result = await teamMemberTransactions.listAsync(req.body);
+        result = result.map(teamMember => {
+            teamMember.TeamMemberImagePath = req.app.get('assets_url') + teamMember.TeamMemberImagePath;
+            return teamMember;
+        });
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || 500).send(error.message);
+    }
+});
+
 module.exports = router;
