@@ -13,7 +13,7 @@ class SlideValidator {
             }).validateAsync(req.body);
             next();
         } catch (error) {
-            await multerImageUpload.remove('public' + req.file.path);
+            await multerImageUpload.remove(req.file.path);
             res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
         }
     }
@@ -26,7 +26,7 @@ class SlideValidator {
             }).validateAsync(req.body);
             next();
         } catch (error) {
-            if (req.file) await multerImageUpload.remove('public' + req.file.path);
+            if (req.file) await multerImageUpload.remove(req.file.path);
             res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
         }
     }
