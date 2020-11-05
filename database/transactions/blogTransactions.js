@@ -41,7 +41,7 @@ class BlogTransactions {
 
     findAsync(BlogID) {
         return new Promise((resolve, reject) => {
-            this._datacontext.query(`SELECT * FROM tblBlog WHERE BlogID=?`, [BlogID], (error, result) => {
+            this._datacontext.query(`SELECT * FROM vwBlogList WHERE BlogID=?`, [BlogID], (error, result) => {
                 if (!error) {
                     if (result.length > 0)
                         resolve(result[0]);
@@ -73,7 +73,7 @@ class BlogTransactions {
 
     listAsync(values) {
         return new Promise((resolve, reject) => {
-            this._datacontext.query(`SELECT * FROM tblBlog ${sqlHelper.getLimitOffset(values)}`, (error, result) => {
+            this._datacontext.query(`SELECT * FROM vwBlogList ${sqlHelper.getLimitOffset(values)}`, (error, result) => {
                 if (!error) {
                     if (result.length > 0)
                         resolve(result);
