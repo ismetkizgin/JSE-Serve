@@ -60,5 +60,15 @@ router.get('/blog', blogValidator.list, async (req, res) => {
     }
 });
 
+router.get('/blog/:BlogID', blogValidator.find, async (req, res) => {
+    try {
+        const result = await blogTransactions.findAsync(req.params.BlogID);
+        result.BlogImagePath = req.app.get('assets_url') + result.BlogImagePath;
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || 500).send(error.message);
+    }
+});
+
 
 module.exports = router;
