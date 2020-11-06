@@ -11,6 +11,7 @@ const multerImageUpload = ImageUploadFactory.creating('multerImageUpload');
 
 router.post('/blog', tokenControl, multerImageUpload.upload, blogValidator.insert, async (req, res) => {
     try {
+        req.body.BlogState = req.body.BlogState == 'true' ? true : false;
         const result = await blogTransactions.insertAsync(Object.assign(req.body, { UserID: req.decode.UserID, BlogImagePath: req.file.path.replace('public', '') }))
         res.json(result);
     } catch (error) {
@@ -28,7 +29,8 @@ router.put('/blog', tokenControl, multerImageUpload.upload, blogValidator.update
                 return;
             }
         }
-        const result = await blogTransactions.updateAsync(req.body);
+        req.body.BlogState = req.body.BlogState == 'true' ? true : false;
+            const result = await blogTransactions.updateAsync(req.body);
         res.json(result);
     } catch (error) {
         if (req.file) await multerImageUpload.remove(req.file.path);
@@ -62,8 +64,10 @@ router.get('/blog', blogValidator.list, async (req, res) => {
 
 router.get('/blog/:BlogID', blogValidator.find, async (req, res) => {
     try {
+        console.log('sadasdsa');
         const result = await blogTransactions.findAsync(req.params.BlogID);
         result.BlogImagePath = req.app.get('assets_url') + result.BlogImagePath;
+        console.log(result);
         res.json(result);
     } catch (error) {
         res.status(error.status || 500).send(error.message);
