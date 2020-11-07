@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.9.0](https://github.com/ismetkizgin/cl-serve/compare/v1.8.0...v1.9.0) (2020-11-07)
+
+
+### Features
+
+* added message delete router ([a8d2944](https://github.com/ismetkizgin/cl-serve/commit/a8d29444805031d60bc67bbfe714ced8431bbbfa))
+* added message find router ([3d00765](https://github.com/ismetkizgin/cl-serve/commit/3d00765dd76c6a80fc77d32f9f47a0f2ff7ae890))
+* added message insertion router ([41601a3](https://github.com/ismetkizgin/cl-serve/commit/41601a32fba9db549c80260e344a7dce9f36efff))
+* added message list router ([6e208d6](https://github.com/ismetkizgin/cl-serve/commit/6e208d666dc3c34369751f14aba64eaafc35e1f0))
+* added team member delete router ([97a9396](https://github.com/ismetkizgin/cl-serve/commit/97a9396192bdc465659e635374f92aa4ec108d1a))
+* added team member find router ([9e41e5c](https://github.com/ismetkizgin/cl-serve/commit/9e41e5ce3a1b12bb4e1a24d8ce817f8f370a427b))
+* added team member insertion router ([2701725](https://github.com/ismetkizgin/cl-serve/commit/270172577e91f17c6506c9f0605ad9d2eba742f0))
+* added team member list router ([623171e](https://github.com/ismetkizgin/cl-serve/commit/623171e7d502ee6dadcce1883f4ae1975ed82416))
+* added team member update router ([e302d2d](https://github.com/ismetkizgin/cl-serve/commit/e302d2d0ec7f5d74c0b347d1de190f521779e411))
+
+
+### Bug Fixes
+
+* blog state type error in blog operations solved ([ba71681](https://github.com/ismetkizgin/cl-serve/commit/ba7168165452d8cfed82c09cc91685cb44302042))
+
 ## [1.8.0](https://github.com/ismetkizgin/cl-serve/compare/v1.7.0...v1.8.0) (2020-11-05)
 
 
