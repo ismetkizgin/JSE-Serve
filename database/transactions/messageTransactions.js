@@ -38,6 +38,38 @@ class MessageTransactions {
             });
         });
     }
+
+    findAsync(MessageID) {
+        return new Promise((resolve, reject) => {
+            this._datacontext.query(`SELECT * FROM tblMessage WHERE MessageID=?`, [MessageID], (error, result) => {
+                if (!error) {
+                    if (result.length > 0)
+                        resolve(result[0]);
+                    else
+                        reject({ status: HttpStatusCode.NOT_FOUND, message: 'No message registered to the system was found.' });
+                }
+                else {
+                    reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
+                }
+            });
+        });
+    }
+
+    updateAsync(values) {
+        return new Promise((resolve, reject) => {
+            this._datacontext.query(`UPDATE tblMessage SET ? WHERE MessageID=?`, [values, values.MessageID], (error, result) => {
+                if (!error) {
+                    if (result.affectedRows)
+                        resolve('Message information has been updated.');
+                    else
+                        reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: 'An error occurred while updating message information !' });
+                }
+                else {
+                    reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
+                }
+            });
+        });
+    }
 }
 
 module.exports = MessageTransactions;

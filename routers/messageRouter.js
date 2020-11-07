@@ -25,4 +25,14 @@ router.get('/message', tokenControl, authControl, messageValidator.list, async (
     }
 });
 
+router.get('/message/:MessageID', tokenControl, authControl, messageValidator.find, async (req, res) => {
+    try {
+        messageTransactions.updateAsync({ MessageID: req.params.MessageID, ReadState: false });
+        const result = await messageTransactions.findAsync(req.params.MessageID);
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || HttpStatusCode.INTERNAL_SERVER_ERROR).send(error.message);
+    }
+});
+
 module.exports = router;
