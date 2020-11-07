@@ -16,6 +16,7 @@ app.use(routers.slideRouter);
 app.use(routers.projectRouter);
 app.use(routers.blogRouter);
 app.use(routers.teamMemberRouter);
+app.use(routers.messageRouter);
 
 app.use((req, res, next) => {
     res.send("404 NOT FOUND");
