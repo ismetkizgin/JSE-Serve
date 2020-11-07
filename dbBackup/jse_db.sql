@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3306
--- Üretim Zamanı: 07 Kas 2020, 17:32:17
+-- Üretim Zamanı: 08 Kas 2020, 02:20:39
 -- Sunucu sürümü: 8.0.22-0ubuntu0.20.04.2
 -- PHP Sürümü: 7.4.11
 
@@ -166,6 +166,7 @@ CREATE TABLE `vwBlogList` (
 ,`BlogID` int
 ,`BlogImagePath` text
 ,`BlogMenuID` int
+,`BlogMenuName` varchar(50)
 ,`BlogState` tinyint(1)
 ,`BlogTitle` varchar(150)
 ,`UserID` int
@@ -193,7 +194,7 @@ CREATE TABLE `vwUserList` (
 --
 DROP TABLE IF EXISTS `vwBlogList`;
 
-CREATE VIEW `vwBlogList`  AS  select `tblBlog`.`BlogID` AS `BlogID`,`tblBlog`.`UserID` AS `UserID`,`tblBlog`.`BlogTitle` AS `BlogTitle`,`tblBlog`.`BlogDescription` AS `BlogDescription`,`tblBlog`.`BlogContent` AS `BlogContent`,`tblBlog`.`BlogState` AS `BlogState`,`tblBlog`.`BlogCreatedDate` AS `BlogCreatedDate`,`tblBlog`.`BlogMenuID` AS `BlogMenuID`,`tblBlog`.`BlogImagePath` AS `BlogImagePath`,concat(`tblUser`.`UserFirstName`,' ',`tblUser`.`UserLastName`) AS `UserNameSurname` from (`tblBlog` join `tblUser` on((`tblBlog`.`UserID` = `tblUser`.`UserID`))) ;
+CREATE VIEW `vwBlogList`  AS  select `tblBlog`.`BlogID` AS `BlogID`,`tblBlog`.`UserID` AS `UserID`,`tblBlog`.`BlogTitle` AS `BlogTitle`,`tblBlog`.`BlogDescription` AS `BlogDescription`,`tblBlog`.`BlogContent` AS `BlogContent`,`tblBlog`.`BlogState` AS `BlogState`,`tblBlog`.`BlogCreatedDate` AS `BlogCreatedDate`,`tblBlog`.`BlogMenuID` AS `BlogMenuID`,`tblBlog`.`BlogImagePath` AS `BlogImagePath`,concat(`tblUser`.`UserFirstName`,' ',`tblUser`.`UserLastName`) AS `UserNameSurname`,`tblBlogMenu`.`BlogMenuName` AS `BlogMenuName` from ((`tblBlog` join `tblUser` on((`tblBlog`.`UserID` = `tblUser`.`UserID`))) join `tblBlogMenu` on((`tblBlog`.`BlogMenuID` = `tblBlogMenu`.`BlogMenuID`))) ;
 
 -- --------------------------------------------------------
 
@@ -277,13 +278,13 @@ ALTER TABLE `tblBlog`
 -- Tablo için AUTO_INCREMENT değeri `tblBlogMenu`
 --
 ALTER TABLE `tblBlogMenu`
-  MODIFY `BlogMenuID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `BlogMenuID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `tblMessage`
 --
 ALTER TABLE `tblMessage`
-  MODIFY `MessageID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `MessageID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `tblProject`
