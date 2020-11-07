@@ -48,6 +48,9 @@ module.exports = {
     message:{
         GET:{
             Authorize: [Roles.Root, Roles.Administrator]
+        },
+        DELETE:{
+            Authorize: [Roles.Root, Roles.Administrator]
         }
     }
 }

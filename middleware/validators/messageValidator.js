@@ -41,6 +41,17 @@ class MessageValidator {
             res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
         }
     }
+
+    static async delete(req, res, next) {
+        try {
+            await joi.object({
+                MessageID: joi.number().min(1).required(),
+            }).validateAsync(req.body);
+            next();
+        } catch (error) {
+            res.status(HttpStatusCode.EXPECTATION_FAILED).send('Must have correct data entry.');
+        }
+    }
 }
 
 module.exports = MessageValidator;

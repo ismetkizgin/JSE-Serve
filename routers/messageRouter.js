@@ -35,4 +35,13 @@ router.get('/message/:MessageID', tokenControl, authControl, messageValidator.fi
     }
 });
 
+router.delete('/message', tokenControl, authControl, messageValidator.delete, async (req, res) => {
+    try {
+        const result = await messageTransactions.deleteAsync(req.body.MessageID);
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || HttpStatusCode.INTERNAL_SERVER_ERROR).send(error.message);
+    }
+});
+
 module.exports = router;
