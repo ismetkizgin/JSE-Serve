@@ -27,7 +27,7 @@ router.get('/message', tokenControl, authControl, messageValidator.list, async (
 
 router.get('/message/:MessageID', tokenControl, authControl, messageValidator.find, async (req, res) => {
     try {
-        messageTransactions.updateAsync({ MessageID: req.params.MessageID, ReadState: false });
+        messageTransactions.updateAsync({ MessageID: req.params.MessageID, ReadState: true });
         const result = await messageTransactions.findAsync(req.params.MessageID);
         res.json(result);
     } catch (error) {
