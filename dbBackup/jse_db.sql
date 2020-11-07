@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3306
--- Üretim Zamanı: 05 Kas 2020, 21:44:59
+-- Üretim Zamanı: 07 Kas 2020, 17:32:17
 -- Sunucu sürümü: 8.0.22-0ubuntu0.20.04.2
 -- PHP Sürümü: 7.4.11
 
@@ -64,7 +64,9 @@ CREATE TABLE `tblMessage` (
   `MessageSubject` varchar(150) NOT NULL,
   `SenderEmail` varchar(100) NOT NULL,
   `Message` text NOT NULL,
-  `SenderPhone` varchar(15) NOT NULL
+  `SenderPhone` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `ReadState` tinyint(1) NOT NULL DEFAULT '0',
+  `CreatedDate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -104,7 +106,8 @@ CREATE TABLE `tblTeamMember` (
   `TeamMemberGithub` varchar(200) NOT NULL,
   `TeamMemberLinkedin` varchar(200) NOT NULL,
   `TeamMemberCompany` varchar(200) NOT NULL,
-  `TeamMemberDescription` varchar(350) NOT NULL
+  `TeamMemberDescription` varchar(350) NOT NULL,
+  `TeamMemberImagePath` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -157,15 +160,15 @@ INSERT INTO `tblUserType` (`UserTypeName`, `UserTypeNumber`) VALUES
 -- (Asıl görünüm için aşağıya bakın)
 --
 CREATE TABLE `vwBlogList` (
-`BlogID` int
-,`UserID` int
-,`BlogTitle` varchar(150)
-,`BlogDescription` varchar(200)
-,`BlogContent` text
-,`BlogState` tinyint(1)
+`BlogContent` text
 ,`BlogCreatedDate` datetime
-,`BlogMenuID` int
+,`BlogDescription` varchar(200)
+,`BlogID` int
 ,`BlogImagePath` text
+,`BlogMenuID` int
+,`BlogState` tinyint(1)
+,`BlogTitle` varchar(150)
+,`UserID` int
 ,`UserNameSurname` varchar(201)
 );
 
@@ -176,10 +179,10 @@ CREATE TABLE `vwBlogList` (
 -- (Asıl görünüm için aşağıya bakın)
 --
 CREATE TABLE `vwUserList` (
-`UserID` int
+`UserEmail` varchar(100)
 ,`UserFirstName` varchar(100)
+,`UserID` int
 ,`UserLastName` varchar(100)
-,`UserEmail` varchar(100)
 ,`UserTypeName` varchar(25)
 );
 
@@ -243,7 +246,8 @@ ALTER TABLE `tblSlide`
 -- Tablo için indeksler `tblTeamMember`
 --
 ALTER TABLE `tblTeamMember`
-  ADD PRIMARY KEY (`TeamMemberID`);
+  ADD PRIMARY KEY (`TeamMemberID`),
+  ADD UNIQUE KEY `TeamMemberName` (`TeamMemberName`);
 
 --
 -- Tablo için indeksler `tblUser`
@@ -267,7 +271,7 @@ ALTER TABLE `tblUserType`
 -- Tablo için AUTO_INCREMENT değeri `tblBlog`
 --
 ALTER TABLE `tblBlog`
-  MODIFY `BlogID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `BlogID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `tblBlogMenu`
@@ -279,25 +283,25 @@ ALTER TABLE `tblBlogMenu`
 -- Tablo için AUTO_INCREMENT değeri `tblMessage`
 --
 ALTER TABLE `tblMessage`
-  MODIFY `MessageID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `MessageID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `tblProject`
 --
 ALTER TABLE `tblProject`
-  MODIFY `ProjectID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ProjectID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `tblSlide`
 --
 ALTER TABLE `tblSlide`
-  MODIFY `SlideID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `SlideID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `tblTeamMember`
 --
 ALTER TABLE `tblTeamMember`
-  MODIFY `TeamMemberID` int NOT NULL AUTO_INCREMENT;
+  MODIFY `TeamMemberID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `tblUser`
