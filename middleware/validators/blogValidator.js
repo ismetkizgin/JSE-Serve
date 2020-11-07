@@ -54,7 +54,8 @@ class BlogMenuValidator {
                 limit: joi.number(),
                 offset: joi.number(),
                 BlogState: joi.boolean(),
-                UserID: joi.number()
+                UserID: joi.number(),
+                BlogMenuID: joi.number()
             }).with('offset', 'limit').validateAsync(req.query);
             next();
         } catch (error) {
