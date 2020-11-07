@@ -44,5 +44,10 @@ module.exports = {
         PUT: {
             Individual_Authorize: [Roles.Editor]
         }
+    },
+    message:{
+        GET:{
+            Authorize: [Roles.Root, Roles.Administrator]
+        }
     }
 }

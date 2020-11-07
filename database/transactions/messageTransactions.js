@@ -22,6 +22,22 @@ class MessageTransactions {
             });
         });
     }
+
+    listAsync(values) {
+        return new Promise((resolve, reject) => {
+            this._datacontext.query(`SELECT * FROM tblMessage ORDER BY CreatedDate DESC ${sqlHelper.getLimitOffset(values)}`, (error, result) => {
+                if (!error) {
+                    if (result.length > 0)
+                        resolve(result);
+                    else
+                        reject({ status: HttpStatusCode.NOT_FOUND, message: 'No message registered to the system was found.' });
+                }
+                else {
+                    reject({ status: HttpStatusCode.INTERNAL_SERVER_ERROR, message: error.message });
+                }
+            });
+        });
+    }
 }
 
 module.exports = MessageTransactions;

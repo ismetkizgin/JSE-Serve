@@ -16,4 +16,13 @@ router.post('/message', messageValidator.insert, async (req, res) => {
     }
 });
 
+router.get('/message', tokenControl, authControl, messageValidator.list, async (req, res) => {
+    try {
+        const result = await messageTransactions.listAsync(req.query);
+        res.json(result);
+    } catch (error) {
+        res.status(error.status || HttpStatusCode.INTERNAL_SERVER_ERROR).send(error.message);
+    }
+});
+
 module.exports = router;
