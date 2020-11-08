@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3306
--- Üretim Zamanı: 08 Kas 2020, 02:20:39
+-- Üretim Zamanı: 08 Kas 2020, 21:51:24
 -- Sunucu sürümü: 8.0.22-0ubuntu0.20.04.2
 -- PHP Sürümü: 7.4.11
 
@@ -84,6 +84,28 @@ CREATE TABLE `tblProject` (
 -- --------------------------------------------------------
 
 --
+-- Tablo için tablo yapısı `tblSetting`
+--
+
+CREATE TABLE `tblSetting` (
+  `AboutWe` text NOT NULL,
+  `Tweet` text NOT NULL,
+  `MailAddress` text CHARACTER SET utf8 COLLATE utf8_general_ci,
+  `Linkedin` text,
+  `Github` text,
+  `Instagram` text
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Tablo döküm verisi `tblSetting`
+--
+
+INSERT INTO `tblSetting` (`AboutWe`, `Tweet`, `MailAddress`, `Linkedin`, `Github`, `Instagram`) VALUES
+('asd', 'asd', '', 'asdasdasasdsaasdasd', '', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Tablo için tablo yapısı `tblSlide`
 --
 
@@ -160,17 +182,17 @@ INSERT INTO `tblUserType` (`UserTypeName`, `UserTypeNumber`) VALUES
 -- (Asıl görünüm için aşağıya bakın)
 --
 CREATE TABLE `vwBlogList` (
-`BlogContent` text
-,`BlogCreatedDate` datetime
-,`BlogDescription` varchar(200)
-,`BlogID` int
-,`BlogImagePath` text
-,`BlogMenuID` int
-,`BlogMenuName` varchar(50)
-,`BlogState` tinyint(1)
-,`BlogTitle` varchar(150)
+`BlogID` int
 ,`UserID` int
+,`BlogTitle` varchar(150)
+,`BlogDescription` varchar(200)
+,`BlogContent` text
+,`BlogState` tinyint(1)
+,`BlogCreatedDate` datetime
+,`BlogMenuID` int
+,`BlogImagePath` text
 ,`UserNameSurname` varchar(201)
+,`BlogMenuName` varchar(50)
 );
 
 -- --------------------------------------------------------
@@ -180,10 +202,10 @@ CREATE TABLE `vwBlogList` (
 -- (Asıl görünüm için aşağıya bakın)
 --
 CREATE TABLE `vwUserList` (
-`UserEmail` varchar(100)
+`UserID` int
 ,`UserFirstName` varchar(100)
-,`UserID` int
 ,`UserLastName` varchar(100)
+,`UserEmail` varchar(100)
 ,`UserTypeName` varchar(25)
 );
 
