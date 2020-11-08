@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.11.0](https://github.com/ismetkizgin/cl-serve/compare/v1.10.0...v1.11.0) (2020-11-08)
+
+
+### Features
+
+* added setting table to database script ([9dfb308](https://github.com/ismetkizgin/cl-serve/commit/9dfb308c18654893b54f7c7499197881816b2a37))
+
+
+### Bug Fixes
+
+* fix for setting update validator ([be0596d](https://github.com/ismetkizgin/cl-serve/commit/be0596d57498fa64a222672ff5e242786b787dca))
+
 ## [1.10.0](https://github.com/ismetkizgin/cl-serve/compare/v1.9.0...v1.10.0) (2020-11-08)
 
 
