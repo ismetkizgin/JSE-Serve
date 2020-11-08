@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.10.0](https://github.com/ismetkizgin/cl-serve/compare/v1.9.0...v1.10.0) (2020-11-08)
+
+
+### Features
+
+* added blog menu name in blog list view ([99ba85b](https://github.com/ismetkizgin/cl-serve/commit/99ba85b622c2779789e5245570fe7346f1e1a254))
+* added router for receiving settings ([d971ffd](https://github.com/ismetkizgin/cl-serve/commit/d971ffd0c442e6cd399039b08d5a4156c406f4fb))
+* added setting update router ([4670a55](https://github.com/ismetkizgin/cl-serve/commit/4670a55ddb463b0d231c25af986929db475a8104))
+
 ## [1.9.0](https://github.com/ismetkizgin/cl-serve/compare/v1.8.0...v1.9.0) (2020-11-07)
 
 
