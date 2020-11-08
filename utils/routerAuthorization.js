@@ -45,12 +45,17 @@ module.exports = {
             Individual_Authorize: [Roles.Editor]
         }
     },
-    message:{
-        GET:{
+    message: {
+        GET: {
             Authorize: [Roles.Root, Roles.Administrator]
         },
-        DELETE:{
+        DELETE: {
             Authorize: [Roles.Root, Roles.Administrator]
         }
+    },
+    setting: {
+        PUT: {
+            Authorize: [Roles.Root, Roles.Administrator]
+        },
     }
 }
