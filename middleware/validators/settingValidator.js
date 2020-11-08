@@ -10,10 +10,10 @@ class AuthValidator {
             await joi.object({
                 AboutWe: joi.string(),
                 Tweet: joi.string(),
-                MailAdress: joi.string(),
-                Linkedin: joi.string(),
-                Github: joi.string(),
-                Instagram: joi.string(),
+                MailAddress: joi.string().empty(''),
+                Linkedin: joi.string().empty(''),
+                Github: joi.string().empty(''),
+                Instagram: joi.string().empty(''),
             }).validateAsync(req.body);
             next();
         } catch (error) {
