@@ -1,6 +1,6 @@
-# Starting Kit REST API Project
+# JSE-Serve REST API Project
 
-Deploy methods of Starting Kit REST API project are given below.
+Deploy methods of JSE-Serve REST API project are given below.
 
 ### Project Publishing Instructions
 The project can be published in two different ways.
