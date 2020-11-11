@@ -1,5 +1,7 @@
 const joi = require('joi');
 const HttpStatusCode = require('http-status-codes');
+const ImageUploadFactory = require('../imageUploads/imageUploadFactory');
+const multerImageUpload = ImageUploadFactory.creating('multerImageUpload');
 
 class BlogMenuValidator {
     constructor() { }

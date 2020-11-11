@@ -40,7 +40,10 @@ class MulterImageUpload extends ImageUpload {
         });
     }
 
-    remove = promisify(fs.unlink);
+    remove(path){ 
+       const removeFile = promisify(fs.unlink);
+       removeFile(path);
+    }
 }
 
 module.exports = MulterImageUpload;
