@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.11.2](https://github.com/ismetkizgin/cl-serve/compare/v1.11.1...v1.11.2) (2020-11-11)
+
+
+### Bug Fixes
+
+* fix for image remove method ([d8dcc43](https://github.com/ismetkizgin/cl-serve/commit/d8dcc430cfc6a7dfbc606d7e022876f86bf13cf7))
+
 ### [1.11.1](https://github.com/ismetkizgin/cl-serve/compare/v1.11.0...v1.11.1) (2020-11-09)
 
 ## [1.11.0](https://github.com/ismetkizgin/cl-serve/compare/v1.10.0...v1.11.0) (2020-11-08)
