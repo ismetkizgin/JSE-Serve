@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.11.3](https://github.com/ismetkizgin/cl-serve/compare/v1.11.2...v1.11.3) (2020-11-13)
+
+
+### Bug Fixes
+
+* fix for team member property default value ([db7a120](https://github.com/ismetkizgin/cl-serve/commit/db7a1206fa5fda3d64c71c84ce6d501775c67bcd))
+
 ### [1.11.2](https://github.com/ismetkizgin/cl-serve/compare/v1.11.1...v1.11.2) (2020-11-11)
 
 
