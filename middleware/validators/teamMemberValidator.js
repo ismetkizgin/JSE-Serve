@@ -9,10 +9,10 @@ class TeamMemberValidator {
             await joi.object({
                 TeamMemberName: joi.string().required(),
                 TeamMemberTitle: joi.string().required(),
-                TeamMemberGithub: joi.string().required(),
-                TeamMemberLinkedin: joi.string().required(),
-                TeamMemberCompany: joi.string().required(),
-                TeamMemberDescription: joi.string().required()
+                TeamMemberGithub: joi.string().empty(''),
+                TeamMemberLinkedin: joi.string().empty(''),
+                TeamMemberCompany: joi.string().empty(''),
+                TeamMemberDescription: joi.string().empty(''),
             }).validateAsync(req.body);
             next();
         } catch (error) {
@@ -27,10 +27,10 @@ class TeamMemberValidator {
                 TeamMemberID: joi.number().required(),
                 TeamMemberName: joi.string().required(),
                 TeamMemberTitle: joi.string().required(),
-                TeamMemberGithub: joi.string().required(),
-                TeamMemberLinkedin: joi.string().required(),
-                TeamMemberCompany: joi.string().required(),
-                TeamMemberDescription: joi.string().required()
+                TeamMemberGithub: joi.string().empty(''),
+                TeamMemberLinkedin: joi.string().empty(''),
+                TeamMemberCompany: joi.string().empty(''),
+                TeamMemberDescription: joi.string().empty(''),
             }).validateAsync(req.body);
             next();
         } catch (error) {

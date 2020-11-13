@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost:3306
--- Üretim Zamanı: 08 Kas 2020, 21:51:24
+-- Üretim Zamanı: 14 Kas 2020, 00:24:40
 -- Sunucu sürümü: 8.0.22-0ubuntu0.20.04.2
 -- PHP Sürümü: 7.4.11
 
@@ -125,10 +125,10 @@ CREATE TABLE `tblTeamMember` (
   `TeamMemberID` int NOT NULL,
   `TeamMemberName` varchar(100) NOT NULL,
   `TeamMemberTitle` varchar(100) NOT NULL,
-  `TeamMemberGithub` varchar(200) NOT NULL,
-  `TeamMemberLinkedin` varchar(200) NOT NULL,
-  `TeamMemberCompany` varchar(200) NOT NULL,
-  `TeamMemberDescription` varchar(350) NOT NULL,
+  `TeamMemberGithub` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `TeamMemberLinkedin` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `TeamMemberCompany` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
+  `TeamMemberDescription` varchar(350) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `TeamMemberImagePath` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -294,13 +294,13 @@ ALTER TABLE `tblUserType`
 -- Tablo için AUTO_INCREMENT değeri `tblBlog`
 --
 ALTER TABLE `tblBlog`
-  MODIFY `BlogID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `BlogID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `tblBlogMenu`
 --
 ALTER TABLE `tblBlogMenu`
-  MODIFY `BlogMenuID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `BlogMenuID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `tblMessage`
