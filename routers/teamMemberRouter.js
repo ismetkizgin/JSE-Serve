@@ -19,8 +19,11 @@ router.post('/team-member', tokenControl, multerImageUpload.upload, teamMemberVa
 
 router.put('/team-member', tokenControl, multerImageUpload.upload, teamMemberValidator.update, async (req, res) => {
     try {
-        if (req.file)
+        if (req.file) {
+            const teamMemberFind = await teamMemberTransactions.findAsync(req.body.TeamMemberID);
+            await multerImageUpload.remove('public' + teamMemberFind.TeamMemberImagePath);
             req.body.TeamMemberImagePath = req.file.path.replace('public', '');
+        }
         const result = await teamMemberTransactions.updateAsync(req.body);
         res.json(result);
     } catch (error) {
