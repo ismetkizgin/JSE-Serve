@@ -22,15 +22,19 @@ router.post('/blog', tokenControl, multerImageUpload.upload, blogValidator.inser
 
 router.put('/blog', tokenControl, multerImageUpload.upload, blogValidator.update, async (req, res) => {
     try {
+        const findBlog = await blogTransactions.findAsync(req.body.BlogID);
         if (routerAuthorization[req.method].Individual_Authorize.indexOf(req.decode.UserTypeName) != -1) {
-            const findBlog = await blogTransactions.findAsync(req.body.BlogID);
             if (findBlog.UserID != req.decode.UserID) {
                 res.status(HttpStatusCode.UNAUTHORIZED).send('Unauthorized transaction !')
                 return;
             }
         }
+        if (req.file) {
+            req.body.BlogImagePath = req.file.path.replace('public', '');
+            await multerImageUpload.remove('public' + blogFind.BlogImagePath);
+        }
         req.body.BlogState = req.body.BlogState == 'true' ? true : false;
-            const result = await blogTransactions.updateAsync(req.body);
+        const result = await blogTransactions.updateAsync(req.body);
         res.json(result);
     } catch (error) {
         if (req.file) await multerImageUpload.remove(req.file.path);
