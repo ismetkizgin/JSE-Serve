@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.11.4](https://github.com/ismetkizgin/cl-serve/compare/v1.11.3...v1.11.4) (2020-11-14)
+
+
+### Bug Fixes
+
+* variable name for assets url has been edited ([2ce6dd3](https://github.com/ismetkizgin/cl-serve/commit/2ce6dd3f467faa5dd8746bb4ddb2894f9f02d279))
+
 ### [1.11.3](https://github.com/ismetkizgin/cl-serve/compare/v1.11.2...v1.11.3) (2020-11-13)
 
 
