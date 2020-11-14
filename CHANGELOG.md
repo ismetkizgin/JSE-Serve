@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.11.5](https://github.com/ismetkizgin/cl-serve/compare/v1.11.4...v1.11.5) (2020-11-14)
+
+
+### Bug Fixes
+
+* fix for blog image update error ([fc45423](https://github.com/ismetkizgin/cl-serve/commit/fc454234aad7fb8cd280aae6285ef6933e865a70))
+* fix for team member image update error ([92cd448](https://github.com/ismetkizgin/cl-serve/commit/92cd4483165280514ce9402bd89e938ffe54904c))
+
 ### [1.11.4](https://github.com/ismetkizgin/cl-serve/compare/v1.11.3...v1.11.4) (2020-11-14)
 
 
